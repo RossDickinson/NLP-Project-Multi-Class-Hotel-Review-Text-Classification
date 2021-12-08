@@ -19,19 +19,32 @@ Therefore, in order to avoid a bias instilled in the model, it was imperative to
 
 Text preprocessing was required to format the raw text in such a way that the RNN model could consume it as input. All punctuation was removed from the text because it added no linguistic value or context for the model to learn from. Furthermore, a collection of common words, known as stopwords in the nltk (Natural Language Toolkit), were removed. Such words included, “the”, “a”, “an” and “in”, which were removed from the text because they added no sentimental value to the text. 
 
-Removing these words helped to reduce the computational load by reducing the size of the word corpus to be analyzed by the model. The text was also processed using stemming, which reduced each word down to its root with the purpose of improving computational performance. Following this, the text was tokenized to format each review in a list format. The tokenized reviews were then converted to sequences of integers, in which each unique word correseponded to a respective integer value.
+Removing these words helped to reduce the computational load by reducing the size of the word corpus to be analyzed by the model. The text was also processed using stemming, which reduced each word down to its root with the purpose of improving computational performance. Following this, the text was tokenized to format each review in a list format. The tokenized reviews were then converted to sequences of integers, in which each unique word correseponded to a respective integer value. A sample of the first tokenized instance is shown below:
+
+<img src="https://user-images.githubusercontent.com/64614298/145261096-15cd6506-d9b2-4258-9868-bc602de2884b.png" alt="drawing" width="600" class="center"/>
 
 **Improving Class Imbalance using Weight Classes**
 
-Converting from five classes to five classes was justified due to the prominent similarities between the vocabulary in classes one and two, and four and five, respectively. However, reducing the class load induced an imbalanced dataset. In order to compensate for this class imbalance, the concept of balanced class weights was integrated into the ML models. 
+Converting from five classes to three classes was justified due to the prominent similarities between the vocabulary in classes one and two, and four and five, respectively. However, reducing the class load induced an imbalanced dataset. In order to compensate for this class imbalance, the concept of balanced class weights was integrated into the ML models. 
 
-The purpose of integrating class weights was to reduce the bias bound by the ML models. Models tend to learn the features of the majority class well because there is more data the model can learn from, hence impeding a bias in favor of the majority class and against the minority classes. Classes were coupled with an associated class weight to instruct the deep learning models during the training phase to penalize the misclassification made by the minority class by a higher weight than that of the majority class. The weights were determined using the inverse of the respective frequencies, as shown in Equation 1. 
+The purpose of integrating class weights was to reduce the bias bound by the ML models. Models tend to learn the features of the majority class well because there is more data the model can learn from, hence impeding a bias in favor of the majority class and against the minority classes. Classes were coupled with an associated class weight to instruct the deep learning models during the training phase to penalize the misclassification made by the minority class by a higher weight than that of the majority classes. 
 
 <img src="https://user-images.githubusercontent.com/64614298/145258783-445f4da9-51e7-4997-89cc-3e65fad8d169.png" alt="drawing" width="600" class="center"/>
 
 **Preparing Text Review Data for RNN Model**
 
 In order the RNN model to consume the sequential text data, it was first necessary to enforce a maximum sequence length. This was achieved through the use of padding. This meant that each review was either extended or shrunk to a universally consistent length of 200 words. 
+
+Sequence length defines the maximum length of each review. Each review is either padded or reduced to fit the defined maximum sequence length. For example, a review with 1800 tokens would be reduced to 200 tokens if the maximum length was specified to be 200. For an RNN model, the inputs all needed to be of the same length and of numerical tokenized format. The following text parameters were identified about the training data set before padding was added to the tokenized reviews.
+
+<img src="https://user-images.githubusercontent.com/64614298/145261599-a41b03f8-9876-4078-a325-6e40f91b9c5e.png" alt="drawing" width="600" class="center"/>
+
+Sequenced text was then converted to a representative integer and padded using prior padding. For example, the integer 286 shown below refers to the first word in the sequence shown below, ‘convenient’.
+
+<img src="https://user-images.githubusercontent.com/64614298/145261096-15cd6506-d9b2-4258-9868-bc602de2884b.png" alt="drawing" width="600" class="center"/>
+<img src="https://user-images.githubusercontent.com/64614298/145262759-f3464b3f-2c5e-43e3-83c0-7130fd15d10b.png" alt="drawing" width="600" class="center"/>
+
+The padded review sequences (X input) was now of the shape (# of instances, maximum sequence length) and ready to be fed to the RNN model. However, the ratings sequences (Y output) needed to be reformed to the format (# of instances, # of classes). To do so, the **
 
 **Summary of data preprocessing:** 
 
@@ -40,7 +53,10 @@ In order the RNN model to consume the sequential text data, it was first necessa
 3.	Tokenize to clean text to create a list of words for each review.
 4.	Convert tokenized words to a sequence of integers with an index for each word in the corpus.
 5.	Pad the sequences to ensure all input sequences are of the same length.
-
+6.	Convert padded sequences to equivalent integer values. 
+7.	Pad integer sequences to meet the maximum sequence length constraint. 
+8.	Format y_inputs in shape (# of instances, # of classes)
+9.	Format x_inputs in shape (# of instances, maximum sequence length)
 
 # 4. Model Selection and Architecture
 
