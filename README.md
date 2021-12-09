@@ -19,7 +19,7 @@ Therefore, in order to avoid a bias instilled in the model, it was imperative to
 
 Text preprocessing was required to format the raw text in such a way that the RNN model could consume it as input. All punctuation was removed from the text because it added no linguistic value or context for the model to learn from. Furthermore, a collection of common words, known as stopwords in the nltk (Natural Language Toolkit), were removed. Such words included, “the”, “a”, “an” and “in”, which were removed from the text because they added no sentimental value to the text. 
 
-Removing these words helped to reduce the computational load by reducing the size of the word corpus to be analyzed by the model. The text was also processed using stemming, which reduced each word down to its root with the purpose of improving computational performance. Following this, the text was tokenized to format each review in a list format. The tokenized reviews were then converted to sequences of integers, in which each unique word correseponded to a respective integer value. A sample of the first tokenized instance is shown below:
+Removing these words helped to reduce the computational load by reducing the size of the word corpus to be analyzed by the model. The text was also processed using lemmatizing, which removed inflectional endings of words with the purpose of improving computational performance. Following this, the text was tokenized to format each review in a list format. The tokenized reviews were then converted to sequences of integers, in which each unique word correseponded to a respective integer value. A sample of the first tokenized instance is shown below:
 
 <img src="https://user-images.githubusercontent.com/64614298/145261096-15cd6506-d9b2-4258-9868-bc602de2884b.png" alt="drawing" width="600" class="center"/>
 
@@ -27,7 +27,7 @@ Removing these words helped to reduce the computational load by reducing the siz
 
 Converting from five classes to three classes was justified due to the prominent similarities between the vocabulary in classes one and two, and four and five, respectively. However, reducing the class load induced an imbalanced dataset. In order to compensate for this class imbalance, the concept of balanced class weights was integrated into the ML models. 
 
-The purpose of integrating class weights was to reduce the bias bound by the ML models. Models tend to learn the features of the majority class well because there is more data the model can learn from, hence impeding a bias in favor of the majority class and against the minority classes. Classes were coupled with an associated class weight to instruct the deep learning models during the training phase to penalize the misclassification made by the minority class by a higher weight than that of the majority classes. 
+The purpose of integrating class weights was to reduce the bias bound by the ML models. Models tend to learn the features of the majority class well because there is more data that the model can learn from, hence impeding a bias in favor of the majority class and against the minority classes. Classes were coupled with an associated class weight to instruct the deep learning models during the training phase to penalize the misclassification made by the minority class by a higher weight than that of the majority classes. 
 
 <img src="https://user-images.githubusercontent.com/64614298/145258783-445f4da9-51e7-4997-89cc-3e65fad8d169.png" alt="drawing" width="600" class="center"/>
 
@@ -44,7 +44,7 @@ Sequenced text was then converted to a representative integer and padded using p
 <img src="https://user-images.githubusercontent.com/64614298/145261096-15cd6506-d9b2-4258-9868-bc602de2884b.png" alt="drawing" width="600" class="center"/>
 <img src="https://user-images.githubusercontent.com/64614298/145262759-f3464b3f-2c5e-43e3-83c0-7130fd15d10b.png" alt="drawing" width="600" class="center"/>
 
-The padded review sequences (X input) was now of the shape (# of instances, maximum sequence length) and ready to be fed to the RNN model. However, the ratings sequences (Y output) needed to be reformed to the format (# of instances, # of classes). To do so, the **
+The padded review sequences (X input) was now of the shape (# of instances, maximum sequence length) and ready to be fed to the RNN model, namely, (13933, 200). However, the ratings sequences (Y output) needed to be reformed to the format (# of instances, # of classes). To do so, the *pd.get_dummies().values* function was used on y_train, givng an output for the training set of (13933, 3). All the data was then ready to be fed to the model. 
 
 **Summary of data preprocessing:** 
 
@@ -59,6 +59,17 @@ The padded review sequences (X input) was now of the shape (# of instances, maxi
 9.	Format x_inputs in shape (# of instances, maximum sequence length)
 
 # 4. Model Selection and Architecture
+
+Recurrent Neural Networks (RNNs) use a combination of simple functions to produce a complex function. RNNs work particularly well with sequential or time sequence data input because RNN models implement a memory of such; in that the output from a previous timestep is used as an input feature to the next sequence function. Consequently, the model can learn the context and sequential nature of the data input. In the context of NLP, an RNN model can learn the words in a sentence that occurred prior to the current word. Therefore, the model gains an understanding of the context and behavior of a language. Furthermore, the implementation of a bilateral LSTM layer allows the model to learn words both prior and aft of the current input. Thus the model can then learn the context surrounding the current word in a review. 
+
+RNNs allow for sequential data of any length to be input to the model without jeopardizing the size and complexity of the model itself. The model architecture can remain constant regardless of input length. This is particularly advantageous in the context of processing text because it allows the maximum sequence length to become a hyperparameter. Therefore, the optimal sequence length can be searched for using a tuning method. The primary benefit of an RNN for this application is that the model learns from historical and future information. Furthermore, weights in the model are shared across time. 
+
+The disadvantages associated with RNN are slow computation (depending on architecture), vanishing/exploding gradient, difficulty accessing information from a long time ago. It was necessary to employ a optimizer to compromise the vanishing gradient problem. 
+
+The selected model architecture was shown below: 
+
+<img src="https://user-images.githubusercontent.com/64614298/145319286-9b0acb07-387a-444e-8ec4-e0846dcad741.png" alt="drawing" width="600" class="center"/>
+
 
 # 5. Hypertuning 
 
