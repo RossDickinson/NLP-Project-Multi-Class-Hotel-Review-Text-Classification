@@ -60,7 +60,7 @@ The padded review sequences (X input) was now of the shape (# of instances, maxi
 
 # 4. Model Selection and Architecture
 
-Recurrent Neural Networks (RNNs) use a combination of simple functions to produce a complex function. RNNs work particularly well with sequential or time sequence data input because RNN models implement a memory of such; in that the output from a previous timestep is used as an input feature to the next sequence function. Consequently, the model can learn the context and sequential nature of the data input. In the context of NLP, an RNN model can learn the words in a sentence that occurred prior to the current word. Therefore, the model gains an understanding of the context and behavior of a language. Furthermore, the implementation of a bilateral LSTM layer allows the model to learn words both prior and aft of the current input. Thus the model can then learn the context surrounding the current word in a review. 
+Recurrent Neural Networks (RNNs) use a combination of simple functions to produce a complex function. RNNs work particularly well with sequential or time sequence data input because RNN models implement a memory of such; in that the output from a previous timestep is used as an input feature to the next sequence function. Consequently, the model can learn the context and sequential nature of the data input. In the context of NLP, an RNN model can learn the words in a sentence that occurred prior to the current word. Therefore, the model gains an understanding of the context and behavior of a language. Furthermore, the implementation of a bilateral LSTM layer allows the model to learn words both prior and aft of the current input. Thus, the model can then learn the context surrounding the current word in a review. 
 
 RNNs allow for sequential data of any length to be input to the model without jeopardizing the size and complexity of the model itself. The model architecture can remain constant regardless of input length. This is particularly advantageous in the context of processing text because it allows the maximum sequence length to become a hyperparameter. Therefore, the optimal sequence length can be searched for using a tuning method. The primary benefit of an RNN for this application is that the model learns from historical and future information. Furthermore, weights in the model are shared across time. 
 
@@ -70,8 +70,40 @@ The selected model architecture was shown below:
 
 <img src="https://user-images.githubusercontent.com/64614298/145319286-9b0acb07-387a-444e-8ec4-e0846dcad741.png" alt="drawing" width="600" class="center"/>
 
+The embedding layer passes the input and applies 
 
-# 5. Hypertuning 
+# 5. Hyperparameter Tuning 
+
+Deep Learning models, particularly RNNs, have proven to provide exceptional results in the field of NLP and text classification. It does so by recognizing patterns amongst the text inputs and stores these in a memory. The model then learns from its previous inputs in a sequential manner. To achieve optimal performance of an RNN model the most paramount step is training the model. 
+
+The RNN model had several hyperparameters to tune. These parameters are used to control the learning process. The objective of tuning the model was to identify the optimal parameters in such a way that the trained model learns the data effectively with both time and fitting considerations. It was imperative to prevent overfitting and underfitting of the training data such that the model could adequately regularize well to new data. 
+
+There were several available imports to utilize when determining the optimal hyperparameters. keras_tuner was selected to conduct the hyperparameter tuning. This module required that the model was defined as a function and each of the internal parameters were defined with their appropriate search scopes. The following 10 hyperparameters were considered in the tuning process:
+- Embedding output dimension.
+- Embedding regularizer learning rate (l2).
+- Number of units in a dense layer.
+- LSTM dropout rate.
+- LSTM layer output dimensions.
+- Learning rate for the optimizer.
+- Activation functions.
+- Momentum as part of LSTM layer.
+- Number of epochs.
+- Batch size. 
+
+
+**Dropout**
+
+As per best practices, each LSTM layer was accompanied by a dropout layer. Dropout layers reduce the risk of overfitting the training data by randomly bypassing certain neurons. This helped to reduce the sensitivity to unique weights belonging to specific neurons. A widely accepted value of 0.2 was used as the defualt dropout rate, however, it was still necessary to tune and find the best value.   
+
+**Number of Epochs**
+
+The number of epochs determines the number of iterations that the model sees the training data. The range of values in which this parameter could be defined is infinite ranging from 1 to infinity. However, the scope of which to explore is stipulated by an early stopping method. The early stopping method limits the number of epochs based on the performance metric that it is measuring. 
+
+The early stopping method was implemented using the Keras import, *callbacks*. The defined metric to measure was *val_accuracy*. Validation accuracy measures how well the predicted ratings are compared to the actual review ratings. In addition, validation loss was tracked. Validation loss is the quantified loss seen by the validation data set. The objective of the early stop method was to stop the model fitting once the validation loss increased in values for a specified number of epochs. The early stop method was designed to allow the validation accuracy to reach a maxmimum.   
+
+**Batch Size**
+
+Batch size establishes the quantity of smaples that will be fed to the model before the internal parameters of the model are upadated. A large batch size correlates with a large gradient jump. It is often usual to use a default sie of 32, or multiples of 32 up to 256. 
 
 # 6. Evaluating Model Performance
 
