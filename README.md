@@ -90,6 +90,9 @@ There were several available imports to utilize when determining the optimal hyp
 - Number of epochs.
 - Batch size. 
 
+**Embedding Dimension**
+
+The embedding layer is initialized with random weights and then learns an embedding for each word in the training corpus. The input dimension defines the *(total vocabulary size + 1) of the training data, i.e. the total number of unique words that an embedding will be created for. The output dimension defines the vector space in which the words will be embedded, for each word. The input length for this layer corresponds with the *maximum sequence length* defined earlier. 
 
 **Dropout**
 
@@ -103,7 +106,7 @@ The early stopping method was implemented using the Keras import, *callbacks*. T
 
 **Batch Size**
 
-Batch size establishes the quantity of smaples that will be fed to the model before the internal parameters of the model are upadated. A large batch size correlates with a large gradient jump. It is often usual to use a default sie of 32, or multiples of 32 up to 256. 
+Batch size establishes the quantity of smaples that will be fed to the model before the internal parameters of the model are upadated. A large batch size correlates with a large gradient jump. It is often usual to use a default sie of 128, or multiples of 32 up to 256. 
 
 # 6. Evaluating Model Performance
 
