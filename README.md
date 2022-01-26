@@ -1,5 +1,7 @@
 # Multi-Class-Hotel-Review-Text-Classification
 
+## Note: All code pertaining to this project can be found here - https://colab.research.google.com/drive/1T_Wf9TuFoCEqt7ef9bvXEg0pKDJ4DYx_?usp=sharing.
+
 # 1. Introduction
 This project pertains to evaluate the data collection, wrangling, preprocessing, configuration and performance of a multi-class text classification project. I created a bidirectional LSTM RNN model, tuned the respective hyperparameters, and evaluated the performance metrics of the chosen model on the test data. 
 
