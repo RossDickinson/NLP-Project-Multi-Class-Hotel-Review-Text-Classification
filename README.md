@@ -110,7 +110,9 @@ The early stopping method was implemented using the Keras import, *callbacks*. T
 
 Batch size establishes the quantity of smaples that will be fed to the model before the internal parameters of the model are upadated. A large batch size correlates with a large gradient jump. It is often usual to use a default sie of 128, or multiples of 32 up to 256. 
 
-<img src="https://user-images.githubusercontent.com/64614298/167963991-4006651e-b820-41d1-bd8b-22f580acc8fb.png" height="300" width="300" class="center"/>
+![Training_and_Validation_Tuned_Model](https://user-images.githubusercontent.com/64614298/167963991-4006651e-b820-41d1-bd8b-22f580acc8fb.png)
+
+![Training_and_Validation_Losses_Tuned](https://user-images.githubusercontent.com/64614298/167964531-36f1b4a0-42f7-4cb1-90aa-49184d2d0f63.png)
 
 # 6. Conclusion
 
