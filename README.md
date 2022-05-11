@@ -112,6 +112,10 @@ Batch size establishes the quantity of smaples that will be fed to the model bef
 
 <img src="https://user-images.githubusercontent.com/64614298/167963991-4006651e-b820-41d1-bd8b-22f580acc8fb.png" height="300" width="300" class="center"/>
 
-# 6. Evaluating Model Performance
+# 6. Conclusion
 
-# 7. Conclusion
+Natural Language Processing (NLP) is a branch of AI that focuses on comprehending and extracting information from human languages such as text and voice. Sentiment analysis, chatbots, language translation, voice help, and speech recognition are all examples of common NLP applications. The purpose of this project was to prove that it is possible to train an artificial neural network to classify hotel review, which is a task that many private companies employ in order to determine the quality of the service being provided. 
+
+Each day, roughly 2.5 quintillion bytes of data are generated. Most of them are unstructured such as text, audio, and other examples. Models such as RNN can help manage textual and voice data to make use of the bulk of this data and create meaning from it. NLP is a form of technology that aids in the extraction of meaning from certain kinds of data.
+
+Using a three-class approach, the model was able to achieve a test accuracy and loss of 0.8250 and 0.8076, respectively. Combining the classes 1 and 2 as well as 4 and 5 improved the accuracy of the model immensely. This combination was justified because the language used in ratings 1 and 2, and 4 and 5, respectively, were very similar as illustrated in the data exploration. The bidirectional SLTM model was able to effectively the context of the text data by storing a memory of the words both prior and aft of the current time step. Overall, this model achieved the highest test accuracy and loss. 
