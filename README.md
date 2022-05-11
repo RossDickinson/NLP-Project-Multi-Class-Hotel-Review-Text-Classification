@@ -72,7 +72,7 @@ The selected model architecture was shown below:
 
 <img src="https://user-images.githubusercontent.com/64614298/145319286-9b0acb07-387a-444e-8ec4-e0846dcad741.png" alt="drawing" width="600" class="center"/>
 
-The embedding layer passes the input and applies 
+The embedding layer provides an improvement over sarse representations used in simpler bag of word model representations. A simple matrix multiplication is used to transform the words into their corresponding word embeddings or turns positive integers into dense vectors of a fixed size. The input size is simply the size of the vocabulary (number of uniqe words) or otherwise len(vocabulary) + 1. The input is a sequence of integers that represent certain words, with each integer being an index of a word map dictionary. 
 
 # 5. Hyperparameter Tuning 
 
@@ -81,16 +81,16 @@ Deep Learning models, particularly RNNs, have proven to provide exceptional resu
 The RNN model had several hyperparameters to tune. These parameters are used to control the learning process. The objective of tuning the model was to identify the optimal parameters in such a way that the trained model learns the data effectively with both time and fitting considerations. It was imperative to prevent overfitting and underfitting of the training data such that the model could adequately regularize well to new data. 
 
 There were several available imports to utilize when determining the optimal hyperparameters. keras_tuner was selected to conduct the hyperparameter tuning. This module required that the model was defined as a function and each of the internal parameters were defined with their appropriate search scopes. The following 10 hyperparameters were considered in the tuning process:
-- Embedding output dimension.
-- Embedding regularizer learning rate (l2).
-- Number of units in a dense layer.
-- LSTM dropout rate.
-- LSTM layer output dimensions.
-- Learning rate for the optimizer.
-- Activation functions.
-- Momentum as part of LSTM layer.
-- Number of epochs.
-- Batch size. 
+- Embedding output dimension
+- Embedding regularizer learning rate (l2)
+- Number of units in a dense layer
+- LSTM dropout rate
+- LSTM layer output dimensions
+- Learning rate for the optimizer
+- Activation functions
+- Momentum as part of LSTM layer
+- Number of epochs
+- Batch size
 
 **Embedding Dimension**
 
