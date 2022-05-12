@@ -83,12 +83,10 @@ The RNN model had several hyperparameters to tune. These parameters are used to 
 There were several available imports to utilize when determining the optimal hyperparameters. keras_tuner was selected to conduct the hyperparameter tuning. This module required that the model was defined as a function and each of the internal parameters were defined with their appropriate search scopes. The following 10 hyperparameters were considered in the tuning process:
 - Embedding output dimension
 - Embedding regularizer learning rate (l2)
-- Number of units in a dense layer
+- Dense layer units (first layer)
 - LSTM dropout rate
-- LSTM layer output dimensions
+- Dense layer units (second layer)
 - Learning rate for the optimizer
-- Activation functions
-- Momentum as part of LSTM layer
 - Number of epochs
 - Batch size
 
@@ -110,13 +108,17 @@ The early stopping method was implemented using the Keras import, *callbacks*. T
 
 Batch size establishes the quantity of smaples that will be fed to the model before the internal parameters of the model are upadated. A large batch size correlates with a large gradient jump. It is often usual to use a default sie of 128, or multiples of 32 up to 256. 
 
+There were several available imports to utilize when determining the optimal hyperparameters. keras_tuner was selected to conduct the hyper-tuning. This module required that the model was defined as a function and each of the internal parameters were defined with their appropriate search scopes. The following 8 hyperparameters were considered in the tuning process, as presented in the Table below.
+
+
+
 ![Training_and_Validation_Tuned_Model](https://user-images.githubusercontent.com/64614298/167963991-4006651e-b820-41d1-bd8b-22f580acc8fb.png)
 
 ![Training_and_Validation_Losses_Tuned](https://user-images.githubusercontent.com/64614298/167964531-36f1b4a0-42f7-4cb1-90aa-49184d2d0f63.png)
 
 # 6. Conclusion
 
-Natural Language Processing (NLP) is a branch of AI that focuses on comprehending and extracting information from human languages such as text and voice. Sentiment analysis, chatbots, language translation, voice help, and speech recognition are all examples of common NLP applications. The purpose of this project was to prove that it is possible to train an artificial neural network to classify hotel review, which is a task that many private companies employ in order to determine the quality of the service being provided. 
+Natural Language Processing (NLP) is a branch of AI that focuses on comprehending and extracting information from human languages such as text and voice. Sentiment analysis, chatbots, language translation, voice help, and speech recognition are all examples of common NLP applications. The purpose of this project was to prove that it is possible to train an artificial neural network to classify hotel review, which is a task that many private companies employ to determine the quality of the service being provided. 
 
 Each day, roughly 2.5 quintillion bytes of data are generated. Most of them are unstructured such as text, audio, and other examples. Models such as RNN can help manage textual and voice data to make use of the bulk of this data and create meaning from it. NLP is a form of technology that aids in the extraction of meaning from certain kinds of data.
 
