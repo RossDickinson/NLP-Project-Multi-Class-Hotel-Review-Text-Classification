@@ -110,6 +110,7 @@ Batch size establishes the quantity of smaples that will be fed to the model bef
 
 There were several available imports to utilize when determining the optimal hyperparameters. keras_tuner was selected to conduct the hyper-tuning. This module required that the model was defined as a function and each of the internal parameters were defined with their appropriate search scopes. The following 8 hyperparameters were considered in the tuning process, as presented in the Table below.
 
+![tuning_scope](https://user-images.githubusercontent.com/64614298/167967785-ddf2036b-b145-4c0c-a8b3-7dc33f8a168a.png)
 
 
 ![Training_and_Validation_Tuned_Model](https://user-images.githubusercontent.com/64614298/167963991-4006651e-b820-41d1-bd8b-22f580acc8fb.png)
