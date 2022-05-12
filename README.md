@@ -96,7 +96,7 @@ The embedding layer is initialized with random weights and then learns an embedd
 
 **Dropout**
 
-As per best practices, each LSTM layer was accompanied by a dropout layer. Dropout layers reduce the risk of overfitting the training data by randomly bypassing certain neurons. This helped to reduce the sensitivity to unique weights belonging to specific neurons. A widely accepted value of 0.2 was used as the defualt dropout rate, however, it was still necessary to tune and find the best value.   
+As per RNN best practices, each LSTM layer was accompanied by a dropout layer. Dropout layers reduce the risk of overfitting the training data by randomly bypassing certain neurons. This helped to reduce the sensitivity to unique weights belonging to specific neurons. A widely accepted value of 0.2 was used as the defualt dropout rate, however, it was still necessary to tune and find the best value.   
 
 **Number of Epochs**
 
@@ -112,12 +112,15 @@ There were several available imports to utilize when determining the optimal hyp
 
 ![tuning_scope](https://user-images.githubusercontent.com/64614298/167967785-ddf2036b-b145-4c0c-a8b3-7dc33f8a168a.png)
 
+# 6. Model Evaluation
+
+With the model tuned and all optimal parameters built into the model, the testing accuracy scored at 82.50% with a loss of 0.8076. The training and validation plots are also provided below. 
 
 ![Training_and_Validation_Tuned_Model](https://user-images.githubusercontent.com/64614298/167963991-4006651e-b820-41d1-bd8b-22f580acc8fb.png)
 
 ![Training_and_Validation_Losses_Tuned](https://user-images.githubusercontent.com/64614298/167964531-36f1b4a0-42f7-4cb1-90aa-49184d2d0f63.png)
 
-# 6. Conclusion
+# 7. Conclusion
 
 Natural Language Processing (NLP) is a branch of AI that focuses on comprehending and extracting information from human languages such as text and voice. Sentiment analysis, chatbots, language translation, voice help, and speech recognition are all examples of common NLP applications. The purpose of this project was to prove that it is possible to train an artificial neural network to classify hotel review, which is a task that many private companies employ to determine the quality of the service being provided. 
 
